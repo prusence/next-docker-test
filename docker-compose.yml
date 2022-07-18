@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  nextapp:
+    container_name: nextapp
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    environment:
+      ENV_VARIABLE: ${ENV_VARIABLE}
+      NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+    volumes:
+      - ./app/src:/app/src
+      - ./app/public:/app/public
+    restart: always
+    ports:
+      - 3000:3000

@@ -1,0 +1,15 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copy lock files if file exists
+COPY ./app/package.json ./app/yarn.lock* ./
+
+RUN yarn install
+
+COPY ./app/src ./src
+COPY ./app/public ./public
+COPY ./app/next.config.js .
+COPY ./app/tsconfig.json .
+
+CMD yarn dev
